@@ -18,5 +18,5 @@ jobs:
           echo "Current user: $(whoami)"
           cd /home/ants/django || exit
           git pull origin main
-          systemctl restart gunicorn
-          systemctl restart nginx
+          echo "${{ secrets.USERPASSWORD }}" | sudo -S systemctl restart gunicorn
+          echo "${{ secrets.USERPASSWORD }}" | sudo -S systemctl restart nginx
