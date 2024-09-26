@@ -7,18 +7,19 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # - name: Set up SSH key
-      #   run: |
-      #     mkdir -p ~/.ssh
-      #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-      #     chmod 600 ~/.ssh/id_rsa  # 파일 권한을 600으로 설정
-      #     ssh-keyscan -H 192.168.0.158 >> ~/.ssh/known_hosts  # 서버의 SSH 키를 known_hosts에 추가
+      - name: Set up SSH key
+        run: |
+          whoami
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa  # 파일 권한을 600으로 설정
+          ssh-keyscan -H 192.168.0.158 >> ~/.ssh/known_hosts  # 서버의 SSH 키를 known_hosts에 추가
 
 
       - name: Deploy to Server
