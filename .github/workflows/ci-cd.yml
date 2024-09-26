@@ -18,10 +18,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          eval $(ssh-agent)
+          ssh-add ~/.ssh/id_rsa
+          ssh-keyscan -H 192.168.0.158 >> ~/.ssh/known_hosts
 
       - name: Deploy to Server
         run: |
-          ssh -t -o StrictHostKeyChecking=no ants@192.168.0.158 << 'EOF'
+          ssh ants@192.168.0.158 << 'EOF'
             cd /home/ants/django/ants_final || exit
             echo "RDS_NAME=${{ secrets.DB_NAME }}" >> .env
             echo "RDS_USER=${{ secrets.DB_USER }}" >> .env
