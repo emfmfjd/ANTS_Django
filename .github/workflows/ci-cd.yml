@@ -17,17 +17,6 @@ jobs:
         run: |
           echo "Current user: $(whoami)"
           cd /home/ants/django || exit
-          pwd
-          ifconfig
-          # SSH 호스트 키 추가
-          mkdir -p ~/.ssh
-          ssh-keyscan -H 192.168.0.158 >> ~/.ssh/known_hosts
-          
-          # Debugging output to check known_hosts content
-          echo "Known hosts contents:"
-          cat ~/.ssh/known_hosts
-          
-          git remote set-url origin git@github.com:xotjdchl/django.git  # SSH URL로 변경
           git pull origin main
           sudo systemctl restart gunicorn
           sudo systemctl restart nginx
