@@ -23,7 +23,7 @@ jobs:
           # echo "RDS_HOST=${{ secrets.DB_HOST }}" >> .env
           # echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
           # echo "The .env file has been created at: $(pwd)/.env"
-          git remote set-url origin git@github.com:xotjdchl/django.git  # SSH URL로 변경
+          git remote update
           git pull origin main
           sudo systemctl restart gunicorn
           sudo systemctl restart nginx
