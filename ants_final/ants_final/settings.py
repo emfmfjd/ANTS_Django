@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'stocks',  # stocks 앱 추가
     'django_plotly_dash', # 앱추가
     'django.contrib.humanize', # 숫자에 , 표시하는 앱
+    'sass_processor',
 ]
 
 # 사이트 ID 설정
@@ -214,6 +215,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = '/home/ants/django/ants_final/staticfiles/'  # 정적 파일 저장 경로
+
+STATICFILES_FINDERS = [
+        'sass_processor.finders.CssFinder',
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
