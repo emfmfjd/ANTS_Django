@@ -72,6 +72,9 @@ CACHES = {
     }
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://192.168.0.158',
+]
 
 # 이메일 주소를 필수로 할지 여부
 ACCOUNT_EMAIL_REQUIRED = True
