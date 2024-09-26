@@ -16,6 +16,7 @@ jobs:
       - name: Set up SSH key
         run: |
           echo "Current user: $(whoami)"
+          pwd
           mkdir -p ~/.ssh  # SSH 디렉토리 생성
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa  # SSH 키 저장
           chmod 600 ~/.ssh/id_rsa  # 파일 권한을 600으로 설정
