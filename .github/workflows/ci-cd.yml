@@ -16,7 +16,7 @@ jobs:
       - name: Deploy to Server
         run: |
           echo "Current user: $(whoami)"
-          cd /home/ants/django/ants_final || exit
+          cd /home/ants/django || exit
           echo "RDS_NAME=${{ secrets.DB_NAME }}" >> .env
           echo "RDS_USER=${{ secrets.DB_USER }}" >> .env
           echo "RDS_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
