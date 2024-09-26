@@ -17,12 +17,13 @@ jobs:
         run: |
           echo "Current user: $(whoami)"
           cd /home/ants/django || exit
-          echo "RDS_NAME=${{ secrets.DB_NAME }}" >> .env
-          echo "RDS_USER=${{ secrets.DB_USER }}" >> .env
-          echo "RDS_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-          echo "RDS_HOST=${{ secrets.DB_HOST }}" >> .env
-          echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
-          echo "The .env file has been created at: $(pwd)/.env"
+          # echo "RDS_NAME=${{ secrets.DB_NAME }}" >> .env
+          # echo "RDS_USER=${{ secrets.DB_USER }}" >> .env
+          # echo "RDS_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          # echo "RDS_HOST=${{ secrets.DB_HOST }}" >> .env
+          # echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
+          # echo "The .env file has been created at: $(pwd)/.env"
+          git remote set-url origin git@github.com:xotjdchl/django.git  # SSH URL로 변경
           git pull origin main
           sudo systemctl restart gunicorn
           sudo systemctl restart nginx
