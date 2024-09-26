@@ -18,5 +18,5 @@ jobs:
           echo "Current user: $(whoami)"
           cd /home/ants/django || exit
           git pull origin main
-          sudo systemctl restart gunicorn
-          sudo systemctl restart nginx
+          systemctl restart gunicorn
+          systemctl restart nginx
