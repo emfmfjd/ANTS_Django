@@ -13,26 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up SSH key
-        run: |
-          echo "Current user: $(whoami)"
-          # SSH 디렉토리 생성
-          mkdir -p /home/runner/.ssh  
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/id_rsa  # SSH 키 저장
-          chmod 600 /home/runner/.ssh/id_rsa  # 파일 권한을 600으로 설정
-          ssh-keyscan -H 192.168.0.158 >> /home/runner/.ssh/known_hosts  # 서버의 SSH 키를 known_hosts에 추가
-
       - name: Deploy to Server
         run: |
-          ssh -o StrictHostKeyChecking=no ants@192.168.0.158 << 'EOF'
-            cd /home/ants/django/ants_final || exit
-            echo "RDS_NAME=${{ secrets.DB_NAME }}" >> .env
-            echo "RDS_USER=${{ secrets.DB_USER }}" >> .env
-            echo "RDS_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-            echo "RDS_HOST=${{ secrets.DB_HOST }}" >> .env
-            echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
-            echo "The .env file has been created at: $(pwd)/.env"
-            git pull origin main
-            sudo systemctl restart gunicorn
-            sudo systemctl restart nginx
-          EOF
+          echo "Current user: $(whoami)"
+          cd /home/ants/django/ants_final || exit
+          echo "RDS_NAME=${{ secrets.DB_NAME }}" >> .env
+          echo "RDS_USER=${{ secrets.DB_USER }}" >> .env
+          echo "RDS_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+          echo "RDS_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" >> .env
+          echo "The .env file has been created at: $(pwd)/.env"
+          git pull origin main
+          sudo systemctl restart gunicorn
+          sudo systemctl restart nginx
