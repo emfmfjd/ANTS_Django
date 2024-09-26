@@ -17,9 +17,9 @@ jobs:
         run: |
           whoami
           ls -al
-          sudo echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          sudo chmod 600 ~/.ssh/id_rsa  # 파일 권한을 600으로 설정
-          sudo ssh-keyscan -H 192.168.0.158 >> ~/.ssh/known_hosts  # 서버의 SSH 키를 known_hosts에 추가
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa  # 파일 권한을 600으로 설정
+          ssh-keyscan -H 192.168.0.158 >> ~/.ssh/known_hosts  # 서버의 SSH 키를 known_hosts에 추가
 
 
       - name: Deploy to Server
