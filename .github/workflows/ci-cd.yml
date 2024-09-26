@@ -21,7 +21,7 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -o StrictHostKeyChecking=no ants@192.168.0.158 << 'EOF'
+          ssh -t -o StrictHostKeyChecking=no ants@192.168.0.158 << 'EOF'
             cd /home/ants/django/ants_final || exit
             echo "RDS_NAME=${{ secrets.DB_NAME }}" >> .env
             echo "RDS_USER=${{ secrets.DB_USER }}" >> .env
